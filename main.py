@@ -1,8 +1,19 @@
 from fastapi import FastAPI,Form  
 from routers.api_v1.routers import router
 
-app = FastAPI()
+app = FastAPI(root_path="/ithome")
 app.include_router(router, prefix="/api/v1")
+
+@app.get("/app")
+def read_main():
+    return {"message": "Hello from main app"}
+
+subapi = FastAPI()
+@subapi.get("/sub")
+def read_sub():
+    return {"message": "Hello from sub API"}
+
+app.mount("/subapi",subapi)
 
 # fake_items_db = [{"item_name": "Item 1"}, {"item_name": "Item 2"}, {"item_name": "Item 3"}]
 

@@ -2,10 +2,10 @@ from fastapi import APIRouter
 
 router = APIRouter()
 
-# @router.get("/data/{data_id}")
-# async def root(data_id):
-#     return {"message": f"Hello data {data_id}"}
+@router.get("",summary="Get Data", description="This is a short description")
+async def get_data():
+    return {"message": "Hello data"}
 
-@router.post("")
-async def root():
+@router.post("",deprecated=True)
+async def create_data():
     return {"message": "Hello current data"}
