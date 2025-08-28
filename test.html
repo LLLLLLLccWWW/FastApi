@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Axios 測試</title>
+  <!-- 直接引用 axios CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1>Axios 測試 FastAPI</h1>
+  <button id="btn">Call API</button>
+  <pre id="result"></pre>
+
+  <script>
+    document.getElementById("btn").addEventListener("click", () => {
+      axios.get("http://127.0.0.1:8000/")
+        .then(response => {
+          console.log("API 回應:", response.data);
+          document.getElementById("result").textContent =
+            JSON.stringify(response.data, null, 2);
+        })
+        .catch(error => {
+          console.error("錯誤:", error);
+        });
+    });
+  </script>
+</body>
+</html>
